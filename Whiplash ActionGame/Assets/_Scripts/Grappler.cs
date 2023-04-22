@@ -16,17 +16,20 @@ public class Grappler : MonoBehaviour
 
     public Transform player;
 
+    public CharacterController charControl;
+
+    public PlayerMovement moveScript;
+
     // This is the max distance of our grapple
     public float maxDistance;
-
-    // This is a reference to the line renderer that I am using for testing
-    private LineRenderer lineRend;
 
     [Header("Dynamic")]
     // This is a reference to the point that the hook is connected to
     private Vector3 grapplePoint;
     // This is the joint grapple itself
     private SpringJoint joint;
+    // This is a reference to the line renderer that I am using for testing
+    private LineRenderer lineRend;
 
 
     void Awake()
@@ -56,6 +59,10 @@ public class Grappler : MonoBehaviour
 
     void DrawRope()
     {
+        // Stops from drawing the line renderer when there is no spring joint
+        if(!joint)
+        {return;}
+
         lineRend.SetPosition(0, armTip.position);
         lineRend.SetPosition(1, grapplePoint);
     }
@@ -66,6 +73,9 @@ public class Grappler : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(camera.position, camera.forward, out hit, maxDistance, grappleable))
         {
+            moveScript.enabled = false;
+            charControl.enabled = false;
+            
             grapplePoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();
             joint.autoConfigureConnectedAnchor = false;
@@ -81,12 +91,17 @@ public class Grappler : MonoBehaviour
             joint.spring = 4.5f;
             joint.damper = 7f;
             joint.massScale = 4.5f;
+
+            lineRend.positionCount = 2;
         }
     }
 
     // Stops the grapple
     void StopGrapple()
     {
-
+        lineRend.positionCount = 0;
+        Destroy(joint);
+        charControl.enabled = true;
+        moveScript.enabled = true;
     }
 }
