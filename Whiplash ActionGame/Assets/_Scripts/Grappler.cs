@@ -20,6 +20,8 @@ public class Grappler : MonoBehaviour
 
     public PlayerMovement moveScript;
 
+    public GrappleStrafe strafeScript;
+
     // This is the max distance of our grapple
     public float maxDistance;
 
@@ -41,7 +43,7 @@ public class Grappler : MonoBehaviour
     void Update()
     {
         // Checks if left click is pressed and starts the grapple if it is
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             StartGrapple();
         }
@@ -75,6 +77,7 @@ public class Grappler : MonoBehaviour
         {
             moveScript.enabled = false;
             charControl.enabled = false;
+            strafeScript.enabled = true;
             
             grapplePoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();
@@ -103,5 +106,6 @@ public class Grappler : MonoBehaviour
         Destroy(joint);
         charControl.enabled = true;
         moveScript.enabled = true;
+        strafeScript.enabled = false;
     }
 }
