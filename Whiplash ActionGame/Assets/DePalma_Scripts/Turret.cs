@@ -9,7 +9,10 @@ public class Turret : MonoBehaviour
     Transform player;
     float distance;
     public float maxDistance;
-    public Transform head;
+    public Transform head, barrel;
+    public GameObject projectile;
+    public float fireRate, fireNext, fireSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +26,17 @@ public class Turret : MonoBehaviour
         if (distance <= maxDistance)
         {
             head.LookAt(player);
+            if (Time.time >= fireNext)
+            {
+                fireNext = Time.time + 1f / fireRate;
+                Shoot();
+            }
         }
+    }
+
+    void Shoot()
+    {
+        GameObject clone =Instantiate(projectile, barrel.position, transform.rotation);
+        clone.GetComponent<Rigidbody>().AddForce(transform.forward * fireSpeed);
     }
 }
