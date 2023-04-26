@@ -12,7 +12,7 @@ public class PlayerHitDetection : MonoBehaviour
         if(collider.tag == "Projectile") //Only activates when shot with a projectile
         {
             print("Hit with bullet");
-            SceneManager.LoadScene("_Scene_Grapple"); //Resets player if hit
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); //Resets player if hit
         }
     }
 }
