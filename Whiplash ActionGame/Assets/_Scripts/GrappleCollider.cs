@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrappleCollider : MonoBehaviour
 {
-    OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
 
     }
