@@ -20,6 +20,9 @@ public class Grappler : MonoBehaviour
 
     public PlayerMovement moveScript;
 
+    // This stores a reference to the collider for the grapple hook itself
+    public GameObject grappleCollider;
+
     // This is the max distance of our grapple
     public float maxDistance;
 
@@ -40,6 +43,15 @@ public class Grappler : MonoBehaviour
 
     void Update()
     {
+        if(joint)
+        {
+            Vector3 midPoint = Vector3.Lerp(armTip.position, grapplePoint, 0.5f);
+            grappleCollider.transform.position = midPoint;
+            grappleCollider.transform.LookAt(grapplePoint);
+            float distance = Vector3.Distance(grapplePoint, armTip.position);
+            grappleCollider.transform.localScale = new Vector3(0, 0, distance);
+        }
+
         // Checks if left click is pressed and starts the grapple if it is
         if(Input.GetMouseButtonDown(0))
         {
@@ -94,6 +106,7 @@ public class Grappler : MonoBehaviour
 
             lineRend.positionCount = 2;
         }
+        grappleCollider.SetActive(true);
     }
 
     // Stops the grapple
@@ -103,6 +116,7 @@ public class Grappler : MonoBehaviour
         Destroy(joint);
         charControl.enabled = true;
         moveScript.enabled = true;
+        grappleCollider.SetActive(false);
     }
 
     public bool isGrappling()
