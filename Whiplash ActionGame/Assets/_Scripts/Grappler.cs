@@ -22,6 +22,8 @@ public class Grappler : MonoBehaviour
 
     // This stores a reference to the collider for the grapple hook itself
     public GameObject grappleCollider;
+    
+    public GrappleStrafe strafeScript;
 
     // This is the max distance of our grapple
     public float maxDistance;
@@ -53,7 +55,7 @@ public class Grappler : MonoBehaviour
         }
 
         // Checks if left click is pressed and starts the grapple if it is
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             StartGrapple();
         }
@@ -87,6 +89,7 @@ public class Grappler : MonoBehaviour
         {
             moveScript.enabled = false;
             charControl.enabled = false;
+            strafeScript.enabled = true;
             
             grapplePoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();
@@ -117,6 +120,7 @@ public class Grappler : MonoBehaviour
         charControl.enabled = true;
         moveScript.enabled = true;
         grappleCollider.SetActive(false);
+        strafeScript.enabled = false;
     }
 
     public bool isGrappling()

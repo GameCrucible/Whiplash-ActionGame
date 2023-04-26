@@ -7,7 +7,7 @@ public class MouseLook : MonoBehaviour
     public float mouseX;
     public float mouseY;
 
-    public float mouseSensitivity = 100f;
+    public float mouseSensitivity = 400f;
 
     // A reference to the player model
     public Transform playerModel;
