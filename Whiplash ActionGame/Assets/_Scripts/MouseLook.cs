@@ -21,6 +21,11 @@ public class MouseLook : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void SetMouseSensitivity(float sensitivity)
+    {
+        mouseSensitivity = sensitivity;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -37,4 +42,6 @@ public class MouseLook : MonoBehaviour
         // Allow the player to look around
         playerModel.Rotate(Vector3.up * mouseX);
     }
+
+    
 }
