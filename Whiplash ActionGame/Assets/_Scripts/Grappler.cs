@@ -25,6 +25,8 @@ public class Grappler : MonoBehaviour
     
     public GrappleStrafe strafeScript;
 
+    public Rigidbody rb;
+
     // This is the max distance of our grapple
     public float maxDistance;
 
@@ -37,10 +39,12 @@ public class Grappler : MonoBehaviour
     private LineRenderer lineRend;
 
 
+
     void Awake()
     {
         // Finds the line renderer on the hand
         lineRend = GetComponent<LineRenderer>();
+
     }
 
     void Update()
@@ -90,6 +94,7 @@ public class Grappler : MonoBehaviour
             moveScript.enabled = false;
             charControl.enabled = false;
             strafeScript.enabled = true;
+            moveScript.isSwinging = true;
             
             grapplePoint = hit.point;
             joint = player.gameObject.AddComponent<SpringJoint>();
@@ -121,6 +126,12 @@ public class Grappler : MonoBehaviour
         moveScript.enabled = true;
         grappleCollider.SetActive(false);
         strafeScript.enabled = false;
+        moveScript.isSwinging = false;
+
+        // Calculate swing direction based on the player's position and grapple point
+        moveScript.swingDirection = (player.position - grapplePoint).normalized;
+        // Set the rigidbody velocity at 0 (DO NOT mess with this value)
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, 0);
     }
 
     public bool isGrappling()

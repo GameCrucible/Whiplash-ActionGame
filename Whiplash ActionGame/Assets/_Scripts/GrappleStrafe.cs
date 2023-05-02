@@ -11,18 +11,22 @@ public class GrappleStrafe : MonoBehaviour
     [SerializeField] public Transform playerStrafe;
     [SerializeField] public float speed = 12f;
 
+    public PlayerMovement moveScript;
+
     //[SerializeField] public Transform groundCheck;
     //[SerializeField] public LayerMask groundMask;
     //[SerializeField] public float groundDistance = 0.4f;
     //private bool isGrounded;
 
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         PlayerStrafeInput = new Vector3(Input.GetAxis("Horizontal"), 0f, Input.GetAxis("Vertical"));
-        
-        //Keeps script velocity at 0 (DO NOT mess with this value)
-        velocity.y = 0f;
 
         // Allows player to strafe while grappling
         StrafePlayer();
@@ -42,12 +46,12 @@ public class GrappleStrafe : MonoBehaviour
         }
 
         // Resets the player's velocity if they are touching the ground
-        //if (isGrounded && rb.velocity.y < 0)
-        //{
-        //        velocity.y = -2f;
+        //if (moveScript.isGrounded && rb.velocity.y < 0 && rb.velocity.y > 0)
+       // {
+               // rb.velocity = new Vector3(0f,rb.velocity.y,0f);
         //}
 
         //Adds force to the player relative to where they are facing (the player can swing)
-        rb.AddRelativeForce(PlayerStrafeInput * Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce(PlayerStrafeInput * Time.fixedDeltaTime, ForceMode.VelocityChange);
     }
 }
