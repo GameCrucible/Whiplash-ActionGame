@@ -27,6 +27,8 @@ public class Grappler : MonoBehaviour
 
     public Rigidbody rb;
 
+    public AudioSource audio;
+
     // This is the max distance of our grapple
     public float maxDistance;
 
@@ -113,6 +115,7 @@ public class Grappler : MonoBehaviour
             joint.massScale = 4.5f;
 
             lineRend.positionCount = 2;
+            audio.Play();
         }
         grappleCollider.SetActive(true);
     }

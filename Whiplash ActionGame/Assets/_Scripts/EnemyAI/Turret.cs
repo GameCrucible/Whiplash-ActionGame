@@ -12,6 +12,7 @@ public class Turret : MonoBehaviour
     public Transform head, barrel; //The parts of the turret manipulated by the code
     public GameObject projectile; //The projectile prefab
     public float fireRate, fireNext, fireSpeed; //How fast, often, and quickly it fires
+    public AudioSource audio; //For the shoot audio
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
+        audio.Play();
         GameObject clone =Instantiate(projectile, barrel.position, transform.rotation); //Spawns the projectile at the gun's barrel
         clone.GetComponent<Rigidbody>().AddForce(transform.forward * fireSpeed); //Adds force to the projectile to fire it
     }
