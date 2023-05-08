@@ -6,11 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public Score scoreUI;
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
     public void PlayButton()
     {
         SceneManager.LoadScene("Level");
-        //scoreUI.score = 0;
-        
     }
 }
