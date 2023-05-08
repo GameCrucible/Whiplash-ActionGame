@@ -17,9 +17,9 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        targetPos = player.position + offset; //offset lets you see the player
-        //targetPos = player.position; //cannot see the player. it is in orthographic not perspective
-        targetPos.x = 0; //keeps the middle of the frame centered. does not follow players movement. comment out to follow jumping around
+        //targetPos = player.position + offset; //offset lets you see the player
+        targetPos = player.position; //cannot see the player. it is in orthographic not perspective
+        //targetPos.x = 0; //keeps the middle of the frame centered. does not follow players movement. comment out to follow jumping around
         transform.position = targetPos;
         
     }

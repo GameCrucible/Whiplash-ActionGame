@@ -6,22 +6,21 @@ public class GroundSpawner : MonoBehaviour
 {
     public float leftAndRightBound = 10f;
     public float upAndDownBound = 11f;
-    //public int rightBound;
     public GameObject groundTile;
     Vector3 nextSpawnPoint;
     Vector3 nextSpawnPointVertical;
     Vector3 nextSpawnPointHorizontal;
     int numTiles = 3;
-    bool multilevel = false; 
+    bool multilevel = true; 
 
 
     public void SpawnTile(){
         GameObject temp = Instantiate(groundTile, nextSpawnPoint, Quaternion.identity);
 
         if(multilevel==false){
-            nextSpawnPoint = temp.transform.GetChild(8).transform.position; //keeps going straight and level
+            nextSpawnPoint = temp.transform.GetChild(9).transform.position; //keeps going straight and level
         }else{
-
+            
             int groundTileSpawnIndexHorizontal = Random.Range(5,8);
             int groundTileSpawnIndexVertical = Random.Range(8,10);
             if( leftAndRightBound<temp.transform.position.x){// too far left
@@ -33,26 +32,23 @@ public class GroundSpawner : MonoBehaviour
                 groundTileSpawnIndexHorizontal = Random.Range(5,8);
             }
             nextSpawnPointHorizontal = temp.transform.GetChild(groundTileSpawnIndexHorizontal).transform.position;
-/*
+            
             if( upAndDownBound<temp.transform.position.y){// too far up
                 groundTileSpawnIndexVertical = 10;
             } else if( 0>temp.transform.position.y){// too far up
-                groundTileSpawnIndexVertical = 9;
+                groundTileSpawnIndexVertical = 8;
             }else{
-                groundTileSpawnIndexVertical = Random.Range(8,11);
+                groundTileSpawnIndexVertical = Random.Range(9,11);
             }
-            */
-            //groundTileSpawnIndexVertical = Random.Range(8,11);
-            groundTileSpawnIndexVertical = 8;
+            
             nextSpawnPointVertical = temp.transform.GetChild(groundTileSpawnIndexVertical).transform.position;
 
 
             Vector3 newPosition = new Vector3(nextSpawnPointHorizontal.x, nextSpawnPointVertical.y, nextSpawnPointHorizontal.z);
 
             nextSpawnPoint = newPosition;
-
-            
-            /* just left or right tiles. 
+            /*
+            // just left or right tiles. 
             int groundTileSpawnIndex = Random.Range(5,8);
             if( leftAndRightBound<temp.transform.position.x){// too far left
                 groundTileSpawnIndex = Random.Range(6,8);
@@ -64,6 +60,7 @@ public class GroundSpawner : MonoBehaviour
             }
             nextSpawnPoint = temp.transform.GetChild(groundTileSpawnIndex).transform.position;
             */
+            
 
         }
         
