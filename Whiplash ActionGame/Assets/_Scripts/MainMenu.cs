@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     public void PlayButton()
     {
         SceneManager.LoadScene("Level");
-        scoreUI.score = 0;
+        //scoreUI.score = 0;
         
     }
 }

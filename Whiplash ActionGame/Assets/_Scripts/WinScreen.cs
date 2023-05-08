@@ -13,7 +13,7 @@ public class WinScreen : MonoBehaviour
     }
     public void PlayAgain() //play again button sets back to scene 1
     {
-        SceneManager.LoadScene("_Scene_Grapple 1");
+        SceneManager.LoadScene("Level");
     }
 
     public void ReturnMenu() { //return to menu returns to main menu
