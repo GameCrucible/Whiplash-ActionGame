@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public Score scoreUI;
     public void PlayButton()
     {
-        SceneManager.LoadScene("_Scene_Grapple 1");
+        SceneManager.LoadScene("Level");
+        scoreUI.score = 0;
+        
     }
 }
