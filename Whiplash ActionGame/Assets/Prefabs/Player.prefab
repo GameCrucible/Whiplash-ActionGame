@@ -756,7 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67098555353ad3c46945fcb2bf447cce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseScript: {fileID: 0}
+  mouseScript: {fileID: 5025955827872557458}
 --- !u!1 &5025955828020645697
 GameObject:
   m_ObjectHideFlags: 0
