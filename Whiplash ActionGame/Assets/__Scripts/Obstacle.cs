@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    PlayerMovement playerMovement;
+    PlayerMovement_Level playerMovement_level;
     // Start is called before the first frame update
     void Start()
     {
-        playerMovement = GameObject.FindObjectOfType<PlayerMovement>();
+        playerMovement_level = GameObject.FindObjectOfType<PlayerMovement_Level>();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour
         if(collision.gameObject.name == "Player")
         {
             //kill player
-            playerMovement.Die();
+            playerMovement_level.Die();
         }
 
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement_Level : MonoBehaviour
 {
     bool alive = true;
     public float speed = 10; //how fast the player moves per second
