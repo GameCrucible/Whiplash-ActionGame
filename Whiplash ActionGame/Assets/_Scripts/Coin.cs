@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Coin : MonoBehaviour
 {
     public float turnSpeed = 90f;
+    public Score scoreUI;
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<Obstacle>() != null)
+        if(other.gameObject.name == "Player")
         {
             Destroy(gameObject);
+            scoreUI.score += 100;
             return;
         }
         //check is collision is with player and coin
@@ -19,8 +22,9 @@ public class Coin : MonoBehaviour
         {
             return;
         }
+
         //Add to score
-        GameManager.inst.IncrementScore();
+        //GameManager.inst.IncrementScore();
         
         //Destroy the coin score
         Destroy(gameObject);

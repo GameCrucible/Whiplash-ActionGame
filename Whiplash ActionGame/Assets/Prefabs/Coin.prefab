@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnSpeed: 90
+  scoreUI: {fileID: 0}
 --- !u!54 &-2899307108667223624
 Rigidbody:
   m_ObjectHideFlags: 0

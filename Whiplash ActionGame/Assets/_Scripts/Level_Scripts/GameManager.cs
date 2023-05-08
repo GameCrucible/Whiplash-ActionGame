@@ -11,19 +11,19 @@ public class GameManager : MonoBehaviour
 {
     public int score=0;
     public static GameManager inst;
-    public Text scoreText;
+    public TextMeshProUGUI scoreText;
 
     void Awake()
     {
-        scoreText = GetComponent<Text>();
+        scoreText = GetComponent<TextMeshProUGUI>();
         inst = this; //singleton
     }
 
     public void IncrementScore()
     {
         score+=100;
-        //scoreText.text = "SCORE: ";
-        //scoreText.text = score.ToString("#,##0");
+        scoreText.text = "SCORE: ";
+        scoreText.text = score.ToString("#,##0");
 
     }
 
